@@ -1,7 +1,6 @@
 # ZM-class-py
 
-## Python powered game project
+## Python powered Higher or Lower Game
 
 ---
-
-Apparently I'm meant to write about the game now, but I don't actually know what it is...
+The player is shown a card and then must guess whether the next card will be higher or lower.
