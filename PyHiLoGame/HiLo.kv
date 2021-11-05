@@ -1,0 +1,17 @@
+#:kivy 1.0.9
+
+<HiLoGame>:
+    Label:
+        id: 'labelWelcome'
+        text: "Hello, welcome to the Python Higher or Lower game."
+        font_size: 25   
+        top: root.top - 60
+        size: self.size
+        
+    Button:
+        text: 'Start Game'
+        on_press: print("you pressed a button")
+        font_size: 35
+        top: root.top - 360
+        size: 200, 60
+        center_x: root.width / 2
