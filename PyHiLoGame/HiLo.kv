@@ -2,16 +2,24 @@
 
 <HiLoGame>:
     Label:
-        id: 'labelWelcome'
+        id: 'menu'
         text: "Hello, welcome to the Python Higher or Lower game."
         font_size: 25   
         top: root.top - 60
         size: self.size
         
-    Button:
-        text: 'Start Game'
-        on_press: print("you pressed a button")
+    Button: 
+        text: 'Higher'
+        on_press: app.start_game()
         font_size: 35
         top: root.top - 360
         size: 200, 60
-        center_x: root.width / 2
+        center_x: root.width / 2 - 30
+
+    Button:
+        text: 'Higher'
+        on_press: app.start_game()
+        font_size: 35
+        top: root.top - 360
+        size: 200, 60
+        center_x: root.width / 2 + 30
