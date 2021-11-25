@@ -18,9 +18,9 @@ def new_card_is_higher(old_card, new_card):
         return False
     else:
         return True
+    
 
-
-def game_run():
+def game_run_cl():
     print("Welcome to the ZM Higher or Lower Game! \n The game will deal you a card,\n" 
         "each time you must guess whether the next card dealt is higher or lower than the previously dealt card.\n"
         "Everytime you get the answer right, you earn a point.\n If you guess wrong however, the game ends.\n"
@@ -56,4 +56,4 @@ def game_run():
 
 
 if __name__ == '__main__':
-    game_run()
+    game_run_cl()
