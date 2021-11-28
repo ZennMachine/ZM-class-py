@@ -2,17 +2,26 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.lang.builder import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import StringProperty
+
 Builder.load_file('HiLo.kv')
 import random
 
 class HiLoGame(Widget):
-    pass
+    caption = StringProperty()
+
+    def __init__(self, **kwargs):
+        super(HiLoGame, self).__init__(**kwargs)
+        self.caption = "Hello"
+
 
 class HiLoApp(App):
+
     def build(self):
-        score = 0
-        old_card = self.get_new_card()
-        return HiLoGame()
+        self.score = 0
+        self.old_card = self.get_new_card()
+        self.game = HiLoGame()
+        return self.game
         
     A = 1
     J = 11
@@ -36,13 +45,16 @@ class HiLoApp(App):
 
     def choose_higher(self):
         new_card = self.get_new_card()
-        is_higher = self.new_card_is_higher(old_card, new_card)
+        is_higher = self.new_card_is_higher(self.old_card, new_card)
         if(is_higher == True):
-            score += 1
+            self.score += 1
+            self.game.caption = "Correct"
 
     def choose_lower(self):
         new_card = self.get_new_card()
-        is_higher = self.new_card_is_higher(old_card, new_card)
+        is_lower = self.new_card_is_higher(self.old_card, new_card)
+        if (is_lower == True):
+            self.score += 1
 
     def game_run(self):
         print("doing stuff...")
