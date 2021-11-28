@@ -10,8 +10,8 @@ class HiLoGame(Widget):
 
 class HiLoApp(App):
     def build(self):
-        score = 0
-        old_card = self.get_new_card()
+        self.score = 0
+        self.old_card = self.get_new_card()
         return HiLoGame()
         
     A = 1
@@ -36,13 +36,15 @@ class HiLoApp(App):
 
     def choose_higher(self):
         new_card = self.get_new_card()
-        is_higher = self.new_card_is_higher(old_card, new_card)
+        is_higher = self.new_card_is_higher(self.old_card, new_card)
         if(is_higher == True):
-            score += 1
+            self.score += 1
 
     def choose_lower(self):
         new_card = self.get_new_card()
-        is_higher = self.new_card_is_higher(old_card, new_card)
+        is_lower = self.new_card_is_higher(self.old_card, new_card)
+        if (is_lower == True):
+            self.score += 1
 
     def game_run(self):
         print("doing stuff...")
