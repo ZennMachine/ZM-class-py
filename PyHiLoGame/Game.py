@@ -1,59 +1,85 @@
+from tkinter import *
+from tkinter.ttk import *
 import random
 
+def __init__(self, root):
+    self.root = root
+
+old_card = 0
+score = 0
+cards = []
 A = 1
 J = 11
 Q = 12
 K = 13
 
-cards = [ A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K ]
+def initialise_game(self):
+    print("Game Started")
+    A = 1
+    J = 11
+    Q = 12
+    K = 13
 
+    self.cards = [ A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K ]
 
+    self.score = 0
+    self.old_card = get_new_card()
+
+def choose_lower(self):
+    print("chose lower")
+    cardLabel.set("Current Card is: " + str(old_card))
+    new_card = self.get_new_card
+    is_higher = new_card_is_higher(self.old_card, new_card)
+    if is_higher == False:
+        self.score + 1
+        self.old_card = new_card
+    else:
+        print("GameOver")
+        self.game_over(self)
+
+def choose_higher(self):
+    print("chose higher")
+    cardLabel.set("Current Card is: " + str(old_card))
+    new_card = self.get_new_card
+    is_higher = new_card_is_higher(self.old_card, new_card)
+    if is_higher == True:
+        self.score + 1
+        self.old_card = new_card
+    else:
+        print("GameOver")
+        self.game_over(self)
+
+    
 def get_new_card():
     card = random.choice(cards)
     return card
-
 
 def new_card_is_higher(old_card, new_card):
     if old_card > new_card:
         return False
     else:
         return True
-    
 
-def game_run_cl():
-    print("Welcome to the ZM Higher or Lower Game! \n The game will deal you a card,\n" 
-        "each time you must guess whether the next card dealt is higher or lower than the previously dealt card.\n"
-        "Everytime you get the answer right, you earn a point.\n If you guess wrong however, the game ends.\n"
-        "--------------------------------------------")
-    # Game loop runs continuously until the answer given is wrong
-    is_wrong = False
-    score = 0
-
-    old_card = get_new_card()
-    while not is_wrong:
-        print("Your card is: (",old_card , ") .\n Is the next card higher or lower?")
-        user_in = input("h or l? ")
-        new_card = get_new_card()
-        is_higher = new_card_is_higher(old_card, new_card)
-        if user_in == "h" and is_higher:
-            print(new_card)
-            print("Correct")
-            score += 1
-            print(score)
-        elif user_in == "h" and not is_higher:
-            print(new_card)
-            is_wrong = True
-        elif user_in == "l" and not is_higher:
-            print(new_card)
-            print("Correct")
-            score += 1
-        else:
-            print(new_card)
-            is_wrong = True
-        # Replace the old card with the new card
-        old_card = new_card
-    print("Game Over")
+def game_over(self):
+    self.labelToChange.set("Game Over")
 
 
-if __name__ == '__main__':
-    game_run_cl()
+root = Tk()
+root.minsize(width=720, height=360)
+root.resizable(width=False, height=False)
+root.title("Higher Lower")
+
+welcome = Label(root, text="Welcome to Higher or Lower!").pack()
+
+initialise_game
+cardLabel = StringVar()
+cardLabel.set("Current Card is: " + str(old_card))
+scoreLabel = StringVar()
+scoreLabel.set("Score: " + str(score))
+
+scoreLabel = Label(root, text="Score: ").place(x=720/2 - 20, y=30)
+currentCardLabel = Label(root, text=cardLabel).place(x=720/2 - 40, y=60)
+lowerButton = Button(root, text="Lower", command=choose_lower).place(x=720/2 - 80, y=100)
+higherButton = Button(root, text="Higher", command=choose_higher).place(x=720/2 , y=100)
+
+root.mainloop()
